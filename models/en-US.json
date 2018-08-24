@@ -1,0 +1,71 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "chore tracker",
+      "intents": [
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AddChoreIntent",
+          "slots": [
+            {
+              "name": "Chore",
+              "type": "Chore"
+            }
+          ],
+          "samples": ["add {Chore}", "add {Chore} to my list"]
+        },
+        {
+          "name": "ListChoresIntent",
+          "slots": [],
+          "samples": ["what are my chores", "list off my chores"]
+        }
+      ],
+      "types": [
+        {
+          "name": "Chore",
+          "values": [
+            {
+              "name": {
+                "value": "dusting the house"
+              }
+            },
+            {
+              "name": {
+                "value": "doing the laundry"
+              }
+            },
+            {
+              "name": {
+                "value": "cleaning the dishes"
+              }
+            },
+            {
+              "name": {
+                "value": "mowing the lawn"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
