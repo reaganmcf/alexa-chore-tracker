@@ -11,11 +11,14 @@ const ERROR_ADDING_CHORE = 'There was an error adding the chore.';
 
 const ERROR_NO_CHORE_SLOT = 'Sorry, I could not identify that chore.';
 
+const ERROR_REMOVING_CHORE = 'Sorry, there was an error removing your chore.';
+
 module.exports = {
   HELP,
   WELCOME,
   CANCEL,
   ERROR,
   ERROR_ADDING_CHORE,
-  ERROR_NO_CHORE_SLOT
+  ERROR_NO_CHORE_SLOT,
+  ERROR_REMOVING_CHORE
 };

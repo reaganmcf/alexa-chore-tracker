@@ -6,8 +6,8 @@
           "summary": "An Alexa Skill that allows you to keep track of chores and tasks",
           "examplePhrases": [
             "Alexa tell chore tracker to add mowing the lawn",
-            "Alexa tell chore tracker to add doing the dishes",
-            "Alexa ask chore tracker to list off my chores"
+            "Alexa ask chore tracker to list off my chores",
+            "Alexa remove mowing the lawn from my chores"
           ],
           "name": "alexa-chore-tracker",
           "description": "An Alexa Skill that allows you to keep track of chores and tasks"

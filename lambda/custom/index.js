@@ -67,10 +67,10 @@ const AddChoreIntentHandler = {
     let speakOutput = Messages.ERROR_NO_CHORE_SLOT;
     if (choreName) {
       const success = await API.addChore(choreName);
+      speakOutput = `Added ${choreName} to your chores list!`;
       if (!success) {
         speakOutput = Messages.ERROR_ADDING_CHORE;
       }
-      speakOutput = `Added ${choreName} to your chores list!`;
     }
     return handlerInput.responseBuilder.speak(speakOutput).getResponse();
   }
@@ -89,10 +89,41 @@ const ListChoresIntentHandler = {
   },
   async handle(handlerInput) {
     const chores = await API.getChores();
-    const { request } = handlerInput.requestEnvelope;
     return handlerInput.responseBuilder
       .speak('Your chores are ' + chores.join(', '))
       .getResponse();
+  }
+};
+
+/**
+ * Handler for the RemoveChoreIntent
+ */
+const RemoveChoreIntentHandler = {
+  canHandle(handlerInput) {
+    const { request } = handlerInput.requestEnvelope;
+    return (
+      request.type === Requests.INTENT_REQUEST &&
+      request.intent.name === Intents.REMOVE_CHORE_INTENT
+    );
+  },
+  async handle(handlerInput) {
+    const { request } = handlerInput.requestEnvelope;
+
+    const choreSlot = request.intent.slots.Chore;
+    let choreName;
+    if (choreSlot && choreSlot.value) {
+      choreName = choreSlot.value.toLowerCase();
+    }
+
+    let speakOutput = Messages.ERROR_NO_CHORE_SLOT;
+    if (choreName) {
+      const success = await API.removeChore(choreName);
+      speakOutput = Messages.ERROR_REMOVING_CHORE;
+      if (success) {
+        speakOutput = `Successfully removed ${choreName}`;
+      }
+    }
+    return handlerInput.responseBuilder.speak(speakOutput).getResponse();
   }
 };
 
@@ -159,7 +190,8 @@ exports.handler = skillBuilder
     AddChoreIntentHandler,
     ListChoresIntentHandler,
     HelpIntentHandler,
-    CancelAndStopIntentHandler
+    CancelAndStopIntentHandler,
+    RemoveChoreIntentHandler
   )
   .addErrorHandlers(ErrorHandler)
   .lambda();

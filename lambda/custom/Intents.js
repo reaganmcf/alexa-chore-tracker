@@ -9,6 +9,11 @@ const ADD_CHORE_INTENT = 'AddChoreIntent';
  */
 const LIST_CHORES_INTENT = 'ListChoresIntent';
 
+/**
+ * Custom intent. Called when the user wants to remove a chore
+ */
+const REMOVE_CHORE_INTENT = 'RemoveChoreIntent';
+
 //MARK: Below are all default AMAZON.<any> Intents
 /**
  * AMAZON Intent. Lets the user cancel a task or completely exit the skill
@@ -33,6 +38,7 @@ const AMAZON_FALLBACK_INTENT = 'AMAZON.FallbackIntent';
 module.exports = {
   ADD_CHORE_INTENT,
   LIST_CHORES_INTENT,
+  REMOVE_CHORE_INTENT,
   AMAZON_CANCEL_INTENT,
   AMAZON_FALLBACK_INTENT,
   AMAZON_HELP_INTENT,

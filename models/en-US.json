@@ -37,6 +37,16 @@
           "name": "ListChoresIntent",
           "slots": [],
           "samples": ["what are my chores", "list off my chores"]
+        },
+        {
+          "name": "RemoveChoreIntent",
+          "slots": [
+            {
+              "name": "Chore",
+              "type": "Chore"
+            }
+          ],
+          "samples": ["remove {Chore}", "remove {Chore} from my list"]
         }
       ],
       "types": [

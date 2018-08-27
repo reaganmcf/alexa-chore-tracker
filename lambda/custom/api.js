@@ -9,7 +9,7 @@ const choreBucket = Cosmic.bucket({
 });
 
 /**
- * Retrieve n chores from the bucket
+ * Retrieve all chores from the bucket
  */
 const getChores = async function() {
   const choreData = await choreBucket
@@ -21,8 +21,10 @@ const getChores = async function() {
       console.log(err);
       return null;
     });
-  console.log(choreData);
   let chores = [];
+  if (!choreData) {
+    return [];
+  }
   choreData.objects.map(item => {
     chores.push(item.title);
   });
@@ -35,7 +37,7 @@ const getChores = async function() {
 const addChore = async function(chore) {
   const params = {
     title: chore,
-    type_slug: 'Chores',
+    type_slug: 'chores',
     content: null
   };
   var returnData = await choreBucket
@@ -50,7 +52,30 @@ const addChore = async function(chore) {
   return !!returnData;
 };
 
+/**
+ * Remove a chore from the bucket
+ */
+const removeChore = async function(chore) {
+  const params = {
+    slug: chore
+      .split(' ')
+      .join('-')
+      .toLowerCase()
+  };
+  var returnData = await choreBucket
+    .deleteObject(params)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      console.log(err);
+      return null;
+    });
+  return !!returnData;
+};
+
 module.exports = {
   getChores,
-  addChore
+  addChore,
+  removeChore
 };
