@@ -1,6 +1,5 @@
 node_modules/
 .ask/
-config.js
 .DS_Store
 Archive.zip
 writeup.pages

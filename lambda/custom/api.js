@@ -24,11 +24,12 @@ const getChores = async function() {
   let chores = [];
   if (!choreData) {
     return [];
+  } else {
+    choreData.objects.map(item => {
+      chores.push(item.title);
+    });
+    return chores;
   }
-  choreData.objects.map(item => {
-    chores.push(item.title);
-  });
-  return chores;
 };
 
 /**

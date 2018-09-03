@@ -88,10 +88,12 @@ const ListChoresIntentHandler = {
     );
   },
   async handle(handlerInput) {
+    let speakOutput = 'There are no chores in your bucket';
     const chores = await API.getChores();
-    return handlerInput.responseBuilder
-      .speak('Your chores are ' + chores.join(', '))
-      .getResponse();
+    if (chores.length > 0) {
+      speakOutput = 'Your chores are ' + chores.join(', ');
+    }
+    return handlerInput.responseBuilder.speak(speakOutput).getResponse();
   }
 };
 
